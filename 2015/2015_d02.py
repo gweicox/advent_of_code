@@ -7,10 +7,12 @@ with open("2015_d02.txt") as f:
 
 #🎄❄🎄❄🎄🌞🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄⛄
 
+from itertools import starmap
+
 
 def fun_part_1(data):
-    from itertools import starmap
-    lines = [sorted(map(int, line.split("x"))) for line in data.splitlines()]
+    lines = (line.split("x") for line in data.splitlines())
+    lines = (sorted(map(int, line)) for line in lines)
     f = lambda L, W, H: 2 * (L * W + W * H + H * L) + L * W
     return sum(starmap(f, lines))
 
@@ -23,8 +25,8 @@ def fun_part_1_kind_of_like_improved_or_not(data):
 
 
 def fun_part_2(data):
-    from itertools import starmap
-    lines = [sorted(map(int, line.split("x"))) for line in data.splitlines()]
+    lines = (line.split("x") for line in data.splitlines())
+    lines = (sorted(map(int, line)) for line in lines)
     f = lambda L, W, H: 2 * (L + W) + W * H * L
     return sum(starmap(f, lines))
 
