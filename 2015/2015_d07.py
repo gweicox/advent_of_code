@@ -14,20 +14,17 @@ with open("2015_d07.txt") as f: # 🥂
 #🎄❄🎄❄🎄🌞🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄⛄
 
 
-@timer # [0.0037 sec]
+@timer # [0.0028 sec]
 def fun_part_1(data):
     table = [line.split(" -> ") for line in data.splitlines()]
-    G = {dest: op.split() for op, dest in table}
+    G, memo = {dest: op.split() for op, dest in table}, {"":""}
     ops = {"AND":"&","OR":"|","LSHIFT":"<<","RSHIFT":">>","NOT":"~","":""}
-    memo = {"":""}
 
     def get_signal(dest):
         if dest in memo: return memo[dest]
         if dest.isdigit(): return dest
-        src = ["",""] + G[dest]
-        memo[dest] = eval(f"{get_signal(src[-3])}"
-                          f"{ops[src[-2]]}"
-                          f"{get_signal(src[-1])}")
+        a, op, b = (["",""] + G[dest])[-3:]
+        memo[dest] = eval(f"{get_signal(a)}{ops[op]}{get_signal(b)}")
         return memo[dest]
 
     return get_signal("a")
@@ -41,20 +38,17 @@ def fun_part_1_kind_of_like_improved_or_not(data):
 #🎄❄🎄❄🎄❄🎄🌞🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄🥳
 
 
-@timer # [0.0052 sec]
+@timer # [0.0058 sec]
 def fun_part_2(data):
     table = [line.split(" -> ") for line in data.splitlines()]
-    G = {dest: op.split() for op, dest in table}
+    G, memo = {dest: op.split() for op, dest in table}, {"":""}
     ops = {"AND":"&","OR":"|","LSHIFT":"<<","RSHIFT":">>","NOT":"~","":""}
-    memo = {"":""}
 
     def get_signal(dest):
         if dest in memo: return memo[dest]
         if dest.isdigit(): return dest
-        src = ["",""] + G[dest]
-        memo[dest] = eval(f"{get_signal(src[-3])}"
-                          f"{ops[src[-2]]}"
-                          f"{get_signal(src[-1])}")
+        a, op, b = (["",""] + G[dest])[-3:]
+        memo[dest] = eval(f"{get_signal(a)}{ops[op]}{get_signal(b)}")
         return memo[dest]
 
     G['b'] = [str(get_signal("a"))]
