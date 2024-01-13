@@ -13,7 +13,7 @@ with open("2015_d09.txt") as f: # 🥂
 
 #🎄❄🎄❄🎄🌞🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄⛄
 
-from itertools import permutations
+from itertools import pairwise, permutations
 
 
 @timer # [0.0423 sec]
@@ -36,9 +36,15 @@ def fun_part_1(data):
     return curr_min
 
 
-@timer # [_ sec]
+@timer # [0.0900 sec]
 def fun_part_1_kind_of_like_improved_or_not(data):
-    pass
+    lines = (line.split()[::2] for line in data.splitlines())
+    routes = {(*sorted(a_b),): int(dist) for *a_b, dist in lines}
+    places = set(sum(([a, b] for a, b in routes), []))
+    get_len = lambda path: sum(routes[(*sorted(a_b),)] for a_b in pairwise(path))
+    lengths = (get_len(path) for path in permutations(places))
+
+    return min(lengths)
 
 
 #🎄❄🎄❄🎄❄🎄🌞🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄🥳
@@ -64,9 +70,15 @@ def fun_part_2(data):
     return curr_max
 
 
-@timer # [_ sec]
+@timer # [0.0892 sec]
 def fun_part_2_kind_of_like_improved_or_not(data):
-    pass
+    lines = (line.split()[::2] for line in data.splitlines())
+    routes = {(*sorted(a_b),): int(dist) for *a_b, dist in lines}
+    places = set(sum(([a, b] for a, b in routes), []))
+    get_len = lambda path: sum(routes[(*sorted(a_b),)] for a_b in pairwise(path))
+    lengths = (get_len(path) for path in permutations(places))
+
+    return max(lengths)
 
 
 #🎄❄🎄❄🎄❄🎄❄🎄🌞🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🧝
