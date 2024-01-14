@@ -7,7 +7,7 @@ sys.path.append(dirname(dirname(abspath(__file__))))
 from tools import timer
 
 
-data = "hepxcrrq" # your puzzle input 🥂
+data = "..." # your puzzle input 🥂
 
 
 #🎄❄🎄❄🎄🌞🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄⛄
