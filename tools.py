@@ -6,8 +6,9 @@ def timer(func):
     @wraps(func)
     def wrapper_timer(*args, **kwargs):
         tic = perf_counter()
-        value = func(*args, **kwargs)
+        ans = func(*args, **kwargs)
         tac = perf_counter()
-        elapsed_time = f"[{(tac - tic):0.4f} sec]"
-        return value, elapsed_time
+        elapsed_time = tac - tic
+        print(f"{ans} [{elapsed_time:0.4f} sec]")
+        return ans
     return wrapper_timer
