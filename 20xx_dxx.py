@@ -39,8 +39,8 @@ def fun_part_2_kind_of_like_improved_or_not(data):
 
 #🎄❄🎄❄🎄❄🎄❄🎄🌞🎄❄🎄❄🎄❄🎄❄🎄❄🎄❄🧝
 
-print(fun_part_1(data))
-print(fun_part_1_kind_of_like_improved_or_not(data))
+fun_part_1(data)
+fun_part_1_kind_of_like_improved_or_not(data)
 
-print(fun_part_2(data))
-print(fun_part_2_kind_of_like_improved_or_not(data))
+fun_part_2(data)
+fun_part_2_kind_of_like_improved_or_not(data)
