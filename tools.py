@@ -9,6 +9,7 @@ def timer(func):
         ans = func(*args, **kwargs)
         tac = perf_counter()
         elapsed_time = tac - tic
-        print(f"{ans} [{elapsed_time:0.4f} sec]")
+        if ans is not None:
+            print(f"{ans} [{elapsed_time:0.4f} sec]")
         return ans
     return wrapper_timer
